@@ -38,6 +38,7 @@ for j in xrange(K):
   y[ix] = j
 # lets visualize the data:
 plt.scatter(X[:, 0], X[:, 1], c=y, s=40, cmap=plt.cm.Spectral)
+plt.show()
 ```
 
 <div class="fig figcenter fighighlight">
@@ -90,7 +91,7 @@ $$
 L_i = -\log\left(\frac{e^{f_{y_i}}}{ \sum_j e^{f_j} }\right)
 $$
 
-We can see that the Softmax classifier interprets every element of \\(f\\) as holding the (unnormalized) log probabilities of the three classes. We exponentiate these to get (unnormalized) probabilities, and then normalize them to get probabilites. Therefore, the expression inside the log is the normalized probability of the correct class. Note how this expression works: this quantity is always between 0 and 1. When the probability of the correct class is very small (near 0), the loss will go towards (postiive) infinity. Conversely, when the correct class probability goes towards 1, the loss will go towards zero because \\(log(1) = 0\\). Hence, the expression for \\(L_i\\) is low when the correct class probability is high, and it's very high when it is low. 
+We can see that the Softmax classifier interprets every element of \\(f\\) as holding the (unnormalized) log probabilities of the three classes. We exponentiate these to get (unnormalized) probabilities, and then normalize them to get probabilites. Therefore, the expression inside the log is the normalized probability of the correct class. Note how this expression works: this quantity is always between 0 and 1. When the probability of the correct class is very small (near 0), the loss will go towards (positive) infinity. Conversely, when the correct class probability goes towards 1, the loss will go towards zero because \\(log(1) = 0\\). Hence, the expression for \\(L_i\\) is low when the correct class probability is high, and it's very high when it is low.
 
 Recall also that the full Softmax classifier loss is then defined as the average cross-entropy loss over the training examples and the regularization:
 
@@ -101,6 +102,7 @@ $$
 Given the array of `scores` we've computed above, we can compute the loss. First, the way to obtain the probabilities is straight forward:
 
 ```python
+num_examples = X.shape[0]
 # get unnormalized probabilities
 exp_scores = np.exp(scores)
 # normalize them for each example
@@ -110,14 +112,14 @@ probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
 We now have an array `probs` of size [300 x 3], where each row now contains the class probabilities. In particular, since we've normalized them every row now sums to one. We can now query for the  log probabilities assigned to the correct classes in each example:
 
 ```python
-corect_logprobs = -np.log(probs[range(num_examples),y])
+correct_logprobs = -np.log(probs[range(num_examples),y])
 ```
 
 The array `correct_logprobs` is a 1D array of just the probabilities assigned to the correct classes for each example. The full loss is then the average of these log probabilities and the regularization loss:
 
 ```python
 # compute the loss: average cross-entropy loss and regularization
-data_loss = np.sum(corect_logprobs)/num_examples
+data_loss = np.sum(correct_logprobs)/num_examples
 reg_loss = 0.5*reg*np.sum(W*W)
 loss = data_loss + reg_loss
 ```
@@ -201,8 +203,8 @@ for i in xrange(200):
   probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # [N x K]
   
   # compute the loss: average cross-entropy loss and regularization
-  corect_logprobs = -np.log(probs[range(num_examples),y])
-  data_loss = np.sum(corect_logprobs)/num_examples
+  correct_logprobs = -np.log(probs[range(num_examples),y])
+  data_loss = np.sum(correct_logprobs)/num_examples
   reg_loss = 0.5*reg*np.sum(W*W)
   loss = data_loss + reg_loss
   if i % 10 == 0:
@@ -349,8 +351,8 @@ for i in xrange(10000):
   probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True) # [N x K]
   
   # compute the loss: average cross-entropy loss and regularization
-  corect_logprobs = -np.log(probs[range(num_examples),y])
-  data_loss = np.sum(corect_logprobs)/num_examples
+  correct_logprobs = -np.log(probs[range(num_examples),y])
+  data_loss = np.sum(correct_logprobs)/num_examples
   reg_loss = 0.5*reg*np.sum(W*W) + 0.5*reg*np.sum(W2*W2)
   loss = data_loss + reg_loss
   if i % 1000 == 0:

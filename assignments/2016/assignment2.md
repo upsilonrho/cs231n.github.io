@@ -3,6 +3,7 @@ layout: page
 mathjax: true
 permalink: assignments2016/assignment2/
 ---
+**Note: this is the 2016 version of this assignment.**
 
 In this assignment you will practice writing backpropagation code, and training
 Neural Networks and Convolutional Neural Networks. The goals of this assignment
@@ -36,7 +37,7 @@ your assignment right away. We have written a small tutorial on Terminal
 
 ### Working locally
 Get the code as a zip file
-[here](http://vision.stanford.edu/teaching/cs231n/winter1516_assignment2.zip).
+[here](http://cs231n.stanford.edu/assignments/2016/winter1516_assignment2.zip).
 As for the dependencies:
 
 **[Option 1] Use Anaconda:**

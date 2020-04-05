@@ -3,6 +3,7 @@ layout: page
 mathjax: true
 permalink: assignments2016/assignment3/
 ---
+**Note: this is the 2016 version of this assignment.**
 
 In this assignment you will implement recurrent networks, and apply them to image captioning on Microsoft COCO. We will also introduce the TinyImageNet dataset, and use a pretrained model on this dataset to explore different applications of image gradients.
 
@@ -30,7 +31,7 @@ boot up the snapshot everything will be installed for you, and you will be ready
 
 ### Working locally
 Get the code as a zip file
-[here](http://cs231n.stanford.edu/winter1516_assignment3.zip).
+[here](http://cs231n.stanford.edu/assignments/2016/winter1516_assignment3.zip).
 As for the dependencies:
 
 **[Option 1] Use Anaconda:**

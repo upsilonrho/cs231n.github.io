@@ -51,7 +51,7 @@ An example code for forward-propagating a single neuron might look as follows:
 ```python
 class Neuron(object):
   # ... 
-  def forward(inputs):
+  def forward(self, inputs):
     """ assume inputs and weights are 1-D numpy arrays and bias is a number """
     cell_body_sum = np.sum(inputs * self.weights) + self.bias
     firing_rate = 1.0 / (1.0 + math.exp(-cell_body_sum)) # sigmoid activation function
@@ -61,7 +61,7 @@ class Neuron(object):
 In other words, each neuron performs a dot product with the input and its weights, adds the bias and applies the non-linearity (or activation function), in this case the sigmoid \\(\sigma(x) = 1/(1+e^{-x})\\). We will go into more details about different activation functions at the end of this section.
 
 
-**Coarse model.** It's important to stress that this model of a biological neuron is very coarse: For example, there are many different types of neurons, each with different properties. The dendrites in biological neurons perform complex nonlinear computations. The synapses are not just a single weight, they're a complex non-linear dynamical system. The exact timing of the output spikes in many systems in known to be important, suggesting that the rate code approximation may not hold. Due to all these and many other simplifications, be prepared to hear groaning sounds from anyone with some neuroscience background if you draw analogies between Neural Networks and real brains. See this [review](https://physics.ucsd.edu/neurophysics/courses/physics_171/annurev.neuro.28.061604.135703.pdf) (pdf), or more recently this [review](http://www.sciencedirect.com/science/article/pii/S0959438814000130) if you are interested.
+**Coarse model.** It's important to stress that this model of a biological neuron is very coarse: For example, there are many different types of neurons, each with different properties. The dendrites in biological neurons perform complex nonlinear computations. The synapses are not just a single weight, they're a complex non-linear dynamical system. The exact timing of the output spikes in many systems is known to be important, suggesting that the rate code approximation may not hold. Due to all these and many other simplifications, be prepared to hear groaning sounds from anyone with some neuroscience background if you draw analogies between Neural Networks and real brains. See this [review](https://physics.ucsd.edu/neurophysics/courses/physics_171/annurev.neuro.28.061604.135703.pdf) (pdf), or more recently this [review](http://www.sciencedirect.com/science/article/pii/S0959438814000130) if you are interested.
 
 <a name='classifier'></a>
 
@@ -99,7 +99,7 @@ Every activation function (or *non-linearity*) takes a single number and perform
 <div class="fig figcenter fighighlight">
   <img src="/assets/nn1/relu.jpeg" width="40%">
   <img src="/assets/nn1/alexplot.jpeg" width="40%" style="border-left: 1px solid black;">
-  <div class="figcaption"><b>Left:</b> Rectified Linear Unit (ReLU) activation function, which is zero when x &lt 0 and then linear with slope 1 when x &gt 0. <b>Right:</b> A plot from <a href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">Krizhevsky et al.</a> (pdf) paper indicating the 6x improvement in convergence with the ReLU unit compared to the tanh unit.</div>
+  <div class="figcaption"><b>Left:</b> Rectified Linear Unit (ReLU) activation function, which is zero when x &lt; 0 and then linear with slope 1 when x &gt; 0. <b>Right:</b> A plot from <a href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf">Krizhevsky et al.</a> (pdf) paper indicating the 6x improvement in convergence with the ReLU unit compared to the tanh unit.</div>
 </div>
 
 **ReLU.** The Rectified Linear Unit has become very popular in the last few years. It computes the function \\(f(x) = \max(0, x)\\). In other words, the activation is simply thresholded at zero (see image above on the left). There are several pros and cons to using the ReLUs: 
@@ -176,7 +176,7 @@ As an aside, in practice it is often the case that 3-layer neural networks will 
 
 The full story is, of course, much more involved and a topic of much recent research. If you are interested in these topics we recommend for further reading:
 
-- [Deep Learning](http://www.deeplearningbook.org/) book in press by Bengio, Goodfellow, Courville, in practicular [Chapter 6.4](http://www.deeplearningbook.org/contents/mlp.html).
+- [Deep Learning](http://www.deeplearningbook.org/) book in press by Bengio, Goodfellow, Courville, in particular [Chapter 6.4](http://www.deeplearningbook.org/contents/mlp.html).
 - [Do Deep Nets Really Need to be Deep?](http://arxiv.org/abs/1312.6184)
 - [FitNets: Hints for Thin Deep Nets](http://arxiv.org/abs/1412.6550)
 

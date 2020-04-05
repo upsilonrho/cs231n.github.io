@@ -1,7 +1,7 @@
 ---
 layout: page
 mathjax: true
-permalink: /assignment3/
+permalink: assignments2015/assignment3/
 ---
 
 In the previous assignment, you implemented and trained your own ConvNets.
@@ -18,7 +18,7 @@ You can work on the assignment in one of two ways: locally on your own machine, 
 
 ### Working locally
 **Get the code:**
-Download the starter code [here](http://cs231n.stanford.edu/assignment3.zip).
+Download the starter code [here](http://cs231n.stanford.edu/assignments/2015/assignment3.zip).
 
 
 **[Optional] virtual environment:**

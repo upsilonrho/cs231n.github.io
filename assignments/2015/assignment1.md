@@ -1,7 +1,7 @@
 ---
 layout: page
 mathjax: true
-permalink: /assignment1/
+permalink: assignments2015/assignment1/
 ---
 
 In this assignment you will practice putting together a simple image classification pipeline, based on the k-Nearest Neighbor or the SVM/Softmax classifier. The goals of this assignment are as follows:
@@ -21,7 +21,7 @@ through [Terminal](https://www.terminal.com/).
 
 ### Working locally
 **Get the code:**
-[Download the starter code here](http://vision.stanford.edu/teaching/cs231n/assignment1.zip).
+[Download the starter code here](http://cs231n.stanford.edu/assignments/2015/assignment1.zip).
 
 **[Optional] virtual environment:**
 Once you have unzipped the starter code, you might want to create a

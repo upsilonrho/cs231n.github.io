@@ -11,7 +11,7 @@ Table of Contents:
 - [Intuitive understanding of backpropagation](#intuitive)
 - [Modularity: Sigmoid example](#sigmoid)
 - [Backprop in practice: Staged computation](#staged)
-- [Patterns in backward flow](#patters)
+- [Patterns in backward flow](#patterns)
 - [Gradients for vectorized operations](#mat)
 - [Summary](#summary)
 
@@ -43,7 +43,7 @@ $$
 \frac{df(x)}{dx} = \lim_{h\ \to 0} \frac{f(x + h) - f(x)}{h}
 $$
 
-A technical note is that the division sign on the left-hand sign is, unlike the division sign on the right-hand sign, not a division. Instead, this notation indicates that the operator \\(  \frac{d}{dx} \\) is being applied to the function \\(f\\), and returns a different function (the derivative). A nice way to think about the expression above is that when \\(h\\) is very small, then the function is well-approximated by a straight line, and the derivative is its slope. In other words, the derivative on each variable tells you the sensitivity of the whole expression on its value. For example, if \\(x = 4, y = -3\\) then \\(f(x,y) = -12\\) and the derivative on \\(x\\) \\(\frac{\partial f}{\partial x} = -3\\). This tells us that if we were to increase the value of this variable by a tiny amount, the effect on the whole expression would be to decrease it (due to the negative sign), and by three times that amount. This can be seen by rearranging the above equation ( \\( f(x + h) = f(x) + h \frac{df(x)}{dx} \\) ). Analogously, since \\(\frac{\partial f}{\partial y} = 4\\), we expect that increasing the value of \\(y\\) by some very small amount \\(h\\) would also increase the output of the function (due to the positive sign), and by \\(4h\\).
+A technical note is that the division sign on the left-hand side is, unlike the division sign on the right-hand side, not a division. Instead, this notation indicates that the operator \\(  \frac{d}{dx} \\) is being applied to the function \\(f\\), and returns a different function (the derivative). A nice way to think about the expression above is that when \\(h\\) is very small, then the function is well-approximated by a straight line, and the derivative is its slope. In other words, the derivative on each variable tells you the sensitivity of the whole expression on its value. For example, if \\(x = 4, y = -3\\) then \\(f(x,y) = -12\\) and the derivative on \\(x\\) \\(\frac{\partial f}{\partial x} = -3\\). This tells us that if we were to increase the value of this variable by a tiny amount, the effect on the whole expression would be to decrease it (due to the negative sign), and by three times that amount. This can be seen by rearranging the above equation ( \\( f(x + h) = f(x) + h \frac{df(x)}{dx} \\) ). Analogously, since \\(\frac{\partial f}{\partial y} = 4\\), we expect that increasing the value of \\(y\\) by some very small amount \\(h\\) would also increase the output of the function (due to the positive sign), and by \\(4h\\).
 
 > The derivative on each variable tells you the sensitivity of the whole expression on its value.
 
@@ -287,6 +287,8 @@ dX = W.T.dot(dD)
 *Tip: use dimension analysis!* Note that you do not need to remember the expressions for `dW` and `dX`  because they are easy to re-derive based on dimensions. For instance, we know that the gradient on the weights `dW` must be of the same size as `W` after it is computed, and that it must depend on matrix multiplication of `X` and `dD` (as is the case when both `X,W` are single numbers and not matrices). There is always exactly one way of achieving this so that the dimensions work out. For example, `X` is of size [10 x 3] and `dD` of size [5 x 3], so if we want `dW` and `W` has shape [5 x 10], then the only way of achieving this is with `dD.dot(X.T)`, as shown above.
 
 **Work with small, explicit examples**. Some people may find it difficult at first to derive the gradient updates for some vectorized expressions. Our recommendation is to explicitly write out a minimal vectorized example, derive the gradient on paper and then generalize the pattern to its efficient, vectorized form.
+
+Erik Learned-Miller has also written up a longer related document on taking matrix/vector derivatives which you might find helpful. [Find it here](http://cs231n.stanford.edu/vecDerivs.pdf).
 
 <a name='summary'></a>
 
